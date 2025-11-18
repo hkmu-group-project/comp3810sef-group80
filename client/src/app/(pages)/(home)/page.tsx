@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import Link from "next/link";
 
 export default function Index() {
     return (
@@ -6,19 +6,19 @@ export default function Index() {
             height: '100vh', 
             display: 'flex', 
             flexDirection: 'column',
-            backgroundColor: 'EBE5E5'
+            backgroundColor: '#EBE5E5' // Fixed: added # for hex colors
         }}>
             {/* 頂部導航欄 */}
             <div style={{
-                backgroundColor: 'E8E8E8',
-                color: 'FFFFFF',
+                backgroundColor: '#E8E8E8', // Fixed: added # for hex colors
+                color: '#FFFFFF', // Fixed: added # for hex colors
                 padding: '1rem 2rem',
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
             }}>
-                <h1 style={{ margin: 0, fontSize: '1.5rem', color: 'FFFFFF', fontFamily: "'Segoe UI', sans-serif", fontWeight: '300' }}>💬 Chat System</h1>
+                <h1 style={{ margin: 0, fontSize: '1.5rem', color: '#FFFFFF', fontFamily: "'Segoe UI', sans-serif", fontWeight: '300' }}>💬 Chat System</h1>
             </div>
 
             {/* 主內容 - 介紹頁面 */}
@@ -90,7 +90,7 @@ export default function Index() {
                 {/* 行動按鈕 */}
                 <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
                     <Link 
-                        to="/login"
+                        href="/auth/login" // Changed from 'to' to 'href'
                         style={{
                             padding: '12px 24px',
                             backgroundColor: '#3498db',
@@ -104,7 +104,7 @@ export default function Index() {
                         Sign In
                     </Link>
                     <Link 
-                        to="/register"
+                        href="/auth/register" // Changed from 'to' to 'href'
                         style={{
                             padding: '12px 24px',
                             backgroundColor: '#27ae60',
