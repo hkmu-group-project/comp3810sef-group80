@@ -78,6 +78,6 @@ const Nav = (): React.JSX.Element => {
             </div>
         </nav>
     );
-}
+};
 
 export { Nav };

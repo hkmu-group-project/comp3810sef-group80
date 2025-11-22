@@ -7,5 +7,10 @@
         "includes": [
             "!client/.openapi/**/*"
         ]
+    },
+    "css": {
+        "parser": {
+            "tailwindDirectives": true
+        }
     }
 }
