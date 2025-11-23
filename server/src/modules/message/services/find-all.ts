@@ -15,8 +15,12 @@ const serviceMessageFindAll = async (
 
     const result: WithStringId<Message>[] = messages.map(
         (message: WithId<Message>): WithStringId<Message> => ({
-            ...message,
             id: message._id.toString(),
+            roomId: message.roomId,
+            sender: message.sender,
+            content: message.content,
+            createdAt: message.createdAt,
+            updatedAt: message.updatedAt,
         }),
     );
 

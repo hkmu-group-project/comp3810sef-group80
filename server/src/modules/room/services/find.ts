@@ -48,8 +48,12 @@ const serviceRoomFind = async (
     }
 
     return {
-        ...room,
         id: room._id.toString(),
+        ownerId: room.ownerId,
+        name: room.name,
+        description: room.description,
+        createdAt: room.createdAt,
+        updatedAt: room.updatedAt,
     };
 };
 

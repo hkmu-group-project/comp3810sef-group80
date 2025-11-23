@@ -15,8 +15,12 @@ const serviceRoomFindAll = async (
 
     const result: WithStringId<Room>[] = rooms.map(
         (room: WithId<Room>): WithStringId<Room> => ({
-            ...room,
             id: room._id.toString(),
+            ownerId: room.ownerId,
+            name: room.name,
+            description: room.description,
+            createdAt: room.createdAt,
+            updatedAt: room.updatedAt,
         }),
     );
 
