@@ -75,10 +75,7 @@ const LoginForm = (): React.JSX.Element => {
             toast.success("Login successful");
 
             router.push("/rooms");
-        } catch (err: unknown) {
-            console.log({
-                err,
-            });
+        } catch (_: unknown) {
             toast.error("Unknown error");
         } finally {
             setLoading(false);

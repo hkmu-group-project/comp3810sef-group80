@@ -72,9 +72,6 @@ const SERVICE_ERROR_UNKNOWN_CODE = "unknown" as const;
 const SERVICE_ERROR_UNKNOWN_MESSAGE = "Unknown error" as const;
 
 const routerErrorHandler = (error: unknown): Response => {
-    console.log({
-        error,
-    });
     if (error instanceof ServiceError) {
         return error.toJsonResponse();
     }

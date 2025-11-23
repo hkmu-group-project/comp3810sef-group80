@@ -1,7 +1,6 @@
-import Link from "next/link";
+import type * as React from "react";
 
-import { buttonVariants } from "#/components/ui/button";
-import { cn } from "#/lib/utils";
+import { HomeMainButton } from "#/components/pages/home/button";
 
 export default (): React.JSX.Element => {
     return (
@@ -11,29 +10,7 @@ export default (): React.JSX.Element => {
             </h1>
 
             <div className="flex flex-wrap justify-center gap-4">
-                <Link
-                    href="/auth/register"
-                    className={cn(
-                        buttonVariants({
-                            variant: "default",
-                        }),
-                        "font-bold bg-green-600 hover:bg-green-700 text-white dark:text-white",
-                    )}
-                >
-                    {"Sign Up"}
-                </Link>
-
-                <Link
-                    href="/rooms"
-                    className={cn(
-                        buttonVariants({
-                            variant: "default",
-                        }),
-                        "font-bold bg-blue-500 hover:bg-blue-600 text-white dark:text-white",
-                    )}
-                >
-                    {"Find Rooms"}
-                </Link>
+                <HomeMainButton />
             </div>
         </div>
     );

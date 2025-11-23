@@ -19,8 +19,7 @@ const verifyRefreshToken = async (refresh: string | undefined) => {
         )) as RefreshTokenPayload;
 
         return result;
-    } catch (err: unknown) {
-        console.log({ err });
+    } catch (_: unknown) {
         return void 0;
     }
 };
