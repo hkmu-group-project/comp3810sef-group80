@@ -28,7 +28,7 @@ const RegisterForm = (): React.JSX.Element => {
     const register = async (e: React.FormEvent): Promise<void> => {
         e.preventDefault();
 
-        if (!username.trim() || !password.trim() || !password2.trim()) {
+        if (!username || !password || !password2) {
             toast.error("Please enter username and password");
             return void 0;
         }
@@ -51,14 +51,18 @@ const RegisterForm = (): React.JSX.Element => {
             if (error) {
                 const err = error?.errors[0];
 
-                if (err) {
-                    if (err.code === "duplicate") {
-                        toast.error("Duplicate username");
-                        return void 0;
-                    }
-                } else {
+                if (!err) {
                     toast.error("Unknown error");
                     return void 0;
+                }
+
+                switch (err.code) {
+                    case "duplicate":
+                        toast.error("Duplicate username");
+                        return void 0;
+                    default:
+                        toast.error("Unknown error");
+                        return void 0;
                 }
             }
 

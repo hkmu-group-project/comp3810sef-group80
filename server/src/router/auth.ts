@@ -257,6 +257,25 @@ router.post(
                     },
                 },
             },
+            404: {
+                description: "User not found",
+                content: {
+                    "application/json": {
+                        schema: resolver(
+                            createJsonFailureResponseSchema(
+                                createJsonResponseErrorSchema(
+                                    z.literal(
+                                        ServiceUserRenewRefreshErrorCode.NOT_FOUND,
+                                    ),
+                                    z.literal(
+                                        ServiceUserRenewRefreshErrorMessage.NOT_FOUND,
+                                    ),
+                                ),
+                            ),
+                        ),
+                    },
+                },
+            },
             500: {
                 description: "Unknown error",
                 content: {
@@ -346,6 +365,25 @@ router.post(
                                     ),
                                     z.literal(
                                         ServiceUserRenewAccessErrorMessage.INVALID,
+                                    ),
+                                ),
+                            ),
+                        ),
+                    },
+                },
+            },
+            404: {
+                description: "User not found",
+                content: {
+                    "application/json": {
+                        schema: resolver(
+                            createJsonFailureResponseSchema(
+                                createJsonResponseErrorSchema(
+                                    z.literal(
+                                        ServiceUserRenewRefreshErrorCode.NOT_FOUND,
+                                    ),
+                                    z.literal(
+                                        ServiceUserRenewRefreshErrorMessage.NOT_FOUND,
                                     ),
                                 ),
                             ),

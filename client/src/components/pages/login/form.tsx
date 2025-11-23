@@ -32,7 +32,7 @@ const LoginForm = (): React.JSX.Element => {
     const login = async (e: React.FormEvent): Promise<void> => {
         e.preventDefault();
 
-        if (!username.trim() || !password.trim()) {
+        if (!username || !password) {
             toast.error("Please enter username and password");
             return void 0;
         }
@@ -51,14 +51,18 @@ const LoginForm = (): React.JSX.Element => {
             if (error) {
                 const err = error.errors[0];
 
-                if (err) {
-                    if (err.code === "invalid") {
-                        toast.error("Invalid username or password");
-                        return void 0;
-                    }
-                } else {
+                if (!err) {
                     toast.error("Unknown error");
                     return void 0;
+                }
+
+                switch (err.code) {
+                    case "invalid":
+                        toast.error("Invalid username or password");
+                        return void 0;
+                    default:
+                        toast.error("Unknown error");
+                        return void 0;
                 }
             }
 
@@ -74,7 +78,7 @@ const LoginForm = (): React.JSX.Element => {
 
             toast.success("Login successful");
 
-            router.push("/rooms");
+            router.push("/");
         } catch (_: unknown) {
             toast.error("Unknown error");
         } finally {

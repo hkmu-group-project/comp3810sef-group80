@@ -18,7 +18,7 @@ enum ServiceUserRegisterErrorMessage {
     DUPLICATE = "User already exists",
 }
 
-const getRegisterErrorMessage = (
+const getErrorMessage = (
     code: ServiceUserRegisterErrorCode,
 ): ServiceUserRegisterErrorMessage => {
     switch (code) {
@@ -40,18 +40,14 @@ const serviceUserRegister = async (
 
         throw new ServiceError(code)
             .setStatus(409)
-            .setMessage(getRegisterErrorMessage(code));
+            .setMessage(getErrorMessage(code));
     }
-
-    // hash user password
-
-    const hashed: string = await hash(options.password);
 
     // create user
 
     await createUser({
         name: options.name,
-        password: hashed,
+        password: await hash(options.password),
     });
 };
 

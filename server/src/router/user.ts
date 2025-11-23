@@ -226,6 +226,25 @@ router.post(
                     },
                 },
             },
+            409: {
+                description: "User already exists",
+                content: {
+                    "application/json": {
+                        schema: resolver(
+                            createJsonFailureResponseSchema(
+                                createJsonResponseErrorSchema(
+                                    z.literal(
+                                        ServiceUserUpdateErrorCode.DUPLICATE,
+                                    ),
+                                    z.literal(
+                                        ServiceUserUpdateErrorCode.DUPLICATE,
+                                    ),
+                                ),
+                            ),
+                        ),
+                    },
+                },
+            },
             500: {
                 description: "Unknown error",
                 content: {

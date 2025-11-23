@@ -42,18 +42,21 @@ const CreateRoomForm = (): React.JSX.Element => {
             if (error) {
                 const err = error.errors[0];
 
-                if (err) {
-                    switch (err.code) {
-                        case "parse":
-                            toast.error("Invalid input");
-                            return void 0;
-                        case "invalid":
-                            toast.error("Invalid user credentials");
-                            return void 0;
-                    }
-                } else {
+                if (!err) {
                     toast.error("Unknown error");
                     return void 0;
+                }
+
+                switch (err.code) {
+                    case "parse":
+                        toast.error("Invalid input");
+                        return void 0;
+                    case "invalid":
+                        toast.error("Invalid user credentials");
+                        return void 0;
+                    default:
+                        toast.error("Unknown error");
+                        return void 0;
                 }
             }
 

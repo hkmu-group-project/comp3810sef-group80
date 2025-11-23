@@ -1,18 +1,23 @@
+import type { User } from "#/modules/user/schema";
 import type { RefreshTokenPayload } from "#/utils/jwt-verify/refresh";
 
 import { sign } from "hono/jwt";
+import { ObjectId, type WithId } from "mongodb";
 
 import { ACCESS_EXP } from "#/configs/token";
 import { ACCESS_SECRET } from "#/constants";
+import { findUserByID } from "#/modules/user/sql";
 import { verifyRefreshToken } from "#/utils/jwt-verify/refresh";
 import { ServiceError } from "#/utils/service-error";
 
 enum ServiceUserRenewAccessErrorCode {
     INVALID = "invalid",
+    NOT_FOUND = "not_found",
 }
 
 enum ServiceUserRenewAccessErrorMessage {
-    INVALID = "Invalid access token",
+    INVALID = "Invalid refresh token",
+    NOT_FOUND = "User not found",
 }
 
 const getLoginErrorMessage = (
@@ -21,6 +26,8 @@ const getLoginErrorMessage = (
     switch (code) {
         case ServiceUserRenewAccessErrorCode.INVALID:
             return ServiceUserRenewAccessErrorMessage.INVALID;
+        case ServiceUserRenewAccessErrorCode.NOT_FOUND:
+            return ServiceUserRenewAccessErrorMessage.NOT_FOUND;
     }
 };
 
@@ -50,9 +57,24 @@ const serviceUserRenewAccess = async (
             .setMessage(getLoginErrorMessage(code));
     }
 
+    // refetch data
+
+    const user: WithId<User> | null = await findUserByID(
+        new ObjectId(payload.id),
+    );
+
+    if (!user) {
+        const code: ServiceUserRenewAccessErrorCode =
+            ServiceUserRenewAccessErrorCode.NOT_FOUND;
+
+        throw new ServiceError(code)
+            .setStatus(404)
+            .setMessage(getLoginErrorMessage(code));
+    }
+
     const newPayload = {
-        id: payload.id,
-        name: payload.name,
+        id: user._id.toString(),
+        name: user.name,
         iat: Date.now() / 1000,
     } as const;
 
@@ -65,8 +87,8 @@ const serviceUserRenewAccess = async (
     );
 
     return {
-        id: payload.id,
-        name: payload.name,
+        id: user._id.toString(),
+        name: user.name,
         access,
     };
 };
