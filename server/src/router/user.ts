@@ -140,7 +140,7 @@ const updateUserJson = z.object({
     password: z.optional(z.string()),
 });
 
-router.post(
+router.patch(
     "/",
     validator("json", updateUserJson),
     describeRoute({
