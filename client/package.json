@@ -1,5 +1,10 @@
 {
     "private": true,
+    "scripts": {
+        "gen": "openapi-ts -i https://comp3810sef-group80.onrender.com/openapi.json -o ./.openapi",
+        "build": "next build",
+        "start": "next start"
+    },
     "dependencies": {
         "@radix-ui/react-dialog": "^1.1.15",
         "@radix-ui/react-dropdown-menu": "^2.1.16",
