@@ -1,6 +1,7 @@
 {
     "private": true,
     "scripts": {
+        "gen": "openapi-ts -i https://comp3810sef-group80.onrender.com/openapi.json -o ./.openapi",
         "build": "next build",
         "start": "next start"
     },
