@@ -51,7 +51,7 @@ const Chat = (props: ChatProps): React.JSX.Element => {
     }, []);
 
     return (
-        <div className="flex-1 border rounded-lg flex flex-col overflow-hidden">
+        <>
             {/* Messages */}
             <ScrollArea
                 ref={scrollAreaRef}
@@ -72,7 +72,7 @@ const Chat = (props: ChatProps): React.JSX.Element => {
                 scrollArea={scrollAreaRef}
                 setHvNewMessage={setHvNewMessage}
             />
-        </div>
+        </>
     );
 };
 
