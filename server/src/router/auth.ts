@@ -1,3 +1,5 @@
+import type { CookieOptions } from "hono/utils/cookie";
+
 import type { ServiceUserLoginResult } from "#/modules/user/services/auth/login";
 import type { ServiceUserRenewAccessResult } from "#/modules/user/services/auth/renew/access";
 import type { ServiceUserRenewRefreshResult } from "#/modules/user/services/auth/renew/refresh";
@@ -46,6 +48,28 @@ import {
     SERVICE_ERROR_UNKNOWN_CODE,
     SERVICE_ERROR_UNKNOWN_MESSAGE,
 } from "#/utils/service-error";
+
+const getRefreshCookieOptions = (): CookieOptions => {
+    return {
+        domain: "onrender.com",
+        expires: new Date(Date.now() + REFRESH_EXP),
+        httpOnly: true,
+        secure: IS_PRD,
+        path: "/",
+        sameSite: IS_PRD ? "none" : "lax",
+    };
+};
+
+const getAccessCookieOptions = (): CookieOptions => {
+    return {
+        domain: "onrender.com",
+        expires: new Date(Date.now() + ACCESS_EXP),
+        httpOnly: true,
+        secure: IS_PRD,
+        path: "/",
+        sameSite: IS_PRD ? "none" : "lax",
+    };
+};
 
 const router: Hono = new Hono();
 
@@ -188,19 +212,9 @@ router.post(
                 password,
             });
 
-            setCookie(c, REFRESH_NAME, data.refresh, {
-                expires: new Date(Date.now() + REFRESH_EXP),
-                httpOnly: true,
-                secure: IS_PRD,
-                sameSite: IS_PRD ? "None" : "lax",
-            });
+            setCookie(c, REFRESH_NAME, data.refresh, getRefreshCookieOptions());
 
-            setCookie(c, ACCESS_NAME, data.access, {
-                expires: new Date(Date.now() + ACCESS_EXP),
-                httpOnly: true,
-                secure: IS_PRD,
-                sameSite: IS_PRD ? "None" : "lax",
-            });
+            setCookie(c, ACCESS_NAME, data.access, getAccessCookieOptions());
 
             return createJsonResponse<ServiceUserLoginResult>(c, {
                 data,
@@ -304,19 +318,9 @@ router.post(
                     refresh,
                 });
 
-            setCookie(c, REFRESH_NAME, data.refresh, {
-                expires: new Date(Date.now() + REFRESH_EXP),
-                httpOnly: true,
-                secure: IS_PRD,
-                sameSite: IS_PRD ? "None" : "lax",
-            });
+            setCookie(c, REFRESH_NAME, data.refresh, getRefreshCookieOptions());
 
-            setCookie(c, ACCESS_NAME, data.access, {
-                expires: new Date(Date.now() + ACCESS_EXP),
-                httpOnly: true,
-                secure: IS_PRD,
-                sameSite: IS_PRD ? "None" : "lax",
-            });
+            setCookie(c, ACCESS_NAME, data.access, getAccessCookieOptions());
 
             return createJsonResponse<ServiceUserRenewRefreshResult>(c, {
                 data,
@@ -419,10 +423,7 @@ router.post(
                     refresh,
                 });
 
-            setCookie(c, ACCESS_NAME, data.access, {
-                expires: new Date(Date.now() + ACCESS_EXP),
-                httpOnly: true,
-            });
+            setCookie(c, ACCESS_NAME, data.access, getAccessCookieOptions());
 
             return createJsonResponse<ServiceUserRenewAccessResult>(c, {
                 data,
