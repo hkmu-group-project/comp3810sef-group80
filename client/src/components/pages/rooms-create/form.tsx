@@ -105,7 +105,7 @@ const CreateRoomForm = (): React.JSX.Element => {
 
                             <Input
                                 type="text"
-                                placeholder="Description"
+                                placeholder="Description (Optional)"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                                 disabled={loading}
