@@ -118,6 +118,10 @@ const RoomMessages = (props: RoomMessagesProps): React.JSX.Element => {
             before: pageParam,
         });
 
+        if (result.length < PAGE_SIZE) {
+            setHvPreviousPage(false);
+        }
+
         return result;
     };
 

@@ -5,6 +5,8 @@ import type * as React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 
+import { RoomDelete } from "#/components/pages/room/info/delete";
+import { RoomUpdate } from "#/components/pages/room/info/update";
 import { findRoom } from "#/openapi";
 
 type RoomInfoProps = {
@@ -52,7 +54,7 @@ const RoomInfo = (props: RoomInfoProps): React.JSX.Element => {
         }
     };
 
-    const { data, isLoading, error } = useQuery({
+    const { data, isLoading, error, refetch } = useQuery({
         queryKey: [
             "room",
             props.id,
@@ -69,11 +71,23 @@ const RoomInfo = (props: RoomInfoProps): React.JSX.Element => {
     }
 
     return (
-        <div>
+        <div className="relative w-full h-full">
+            {/* Name */}
             <h2 className="text-xl font-semibold">{data?.name}</h2>
-            <p className="mt-2 text-sm text-muted-foreground">
+            {/* Description */}
+            <div className="mt-2 text-sm text-muted-foreground">
                 {data?.description}
-            </p>
+            </div>
+            {/* Bottom menu */}
+            <div className="absolute bottom-0 w-full">
+                <RoomUpdate
+                    id={props.id}
+                    name={data?.name}
+                    description={data?.description}
+                    refetch={refetch}
+                />
+                <RoomDelete id={props.id} />
+            </div>
         </div>
     );
 };

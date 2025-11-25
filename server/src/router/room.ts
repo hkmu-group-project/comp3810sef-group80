@@ -348,9 +348,7 @@ router.patch(
                 description: "Successful response",
                 content: {
                     "application/json": {
-                        schema: resolver(
-                            createJsonSuccessResponseSchema(jsonResponseSchema),
-                        ),
+                        schema: resolver(jsonResponseSchema),
                     },
                 },
             },

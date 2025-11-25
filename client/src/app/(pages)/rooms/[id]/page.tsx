@@ -40,7 +40,7 @@ export default async ({ params }: PageProps): Promise<React.JSX.Element> => {
                                 <SheetTitle>Room Info</SheetTitle>
                             </SheetHeader>
 
-                            <div className="p-4">
+                            <div className="p-4 w-full h-full">
                                 <RoomInfo id={id} />
                             </div>
                         </SheetContent>
