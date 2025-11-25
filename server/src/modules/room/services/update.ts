@@ -1,18 +1,24 @@
+import type { UpdateResult, WithId } from "mongodb";
+
 import type { AccessTokenPayload } from "#/utils/jwt-verify/access";
 import type { Room } from "../schema";
 
-import { ObjectId, type UpdateResult } from "mongodb";
+import { ObjectId } from "mongodb";
 
-import { updateRoom } from "#/modules/room/sql";
+import { findRoomByID, updateRoom } from "#/modules/room/sql";
 import { verifyAccessToken } from "#/utils/jwt-verify/access";
 import { ServiceError } from "#/utils/service-error";
 
 enum ServiceRoomUpdateErrorCode {
     INVALID = "invalid",
+    NOT_FOUND = "not_found",
+    FORBIDDEN = "forbidden",
 }
 
 enum ServiceRoomUpdateErrorMessage {
     INVALID = "Invalid access token",
+    NOT_FOUND = "Room not found",
+    FORBIDDEN = "Forbidden access",
 }
 
 const getErrorMessage = (
@@ -21,6 +27,10 @@ const getErrorMessage = (
     switch (code) {
         case ServiceRoomUpdateErrorCode.INVALID:
             return ServiceRoomUpdateErrorMessage.INVALID;
+        case ServiceRoomUpdateErrorCode.NOT_FOUND:
+            return ServiceRoomUpdateErrorMessage.NOT_FOUND;
+        case ServiceRoomUpdateErrorCode.FORBIDDEN:
+            return ServiceRoomUpdateErrorMessage.FORBIDDEN;
     }
 };
 
@@ -44,6 +54,29 @@ const serviceRoomUpdate = async (
 
         throw new ServiceError(code)
             .setStatus(401)
+            .setMessage(getErrorMessage(code));
+    }
+
+    // find room
+    const room: WithId<Room> | null = await findRoomByID(
+        new ObjectId(options.id),
+    );
+
+    if (!room) {
+        const code: ServiceRoomUpdateErrorCode =
+            ServiceRoomUpdateErrorCode.NOT_FOUND;
+
+        throw new ServiceError(code)
+            .setStatus(404)
+            .setMessage(getErrorMessage(code));
+    }
+
+    if (room.ownerId.toString() !== payload.id) {
+        const code: ServiceRoomUpdateErrorCode =
+            ServiceRoomUpdateErrorCode.FORBIDDEN;
+
+        throw new ServiceError(code)
+            .setStatus(403)
             .setMessage(getErrorMessage(code));
     }
 

@@ -12,7 +12,7 @@ import {
     CardHeader,
     CardTitle,
 } from "#/components/ui/card";
-import { findRooms as findRoomsProcess } from "#/openapi";
+import { findRooms } from "#/openapi";
 
 const PAGE_SIZE = 30 as const;
 
@@ -46,9 +46,9 @@ const Room = (props: RoomProps): React.JSX.Element => {
 };
 
 const Rooms = (): React.JSX.Element => {
-    const findRooms = async ({ pageParam }: { pageParam?: string }) => {
+    const queryFn = async ({ pageParam }: { pageParam?: string }) => {
         try {
-            const { data, error } = await findRoomsProcess({
+            const { data, error } = await findRooms({
                 query: {
                     first: PAGE_SIZE,
                     after: pageParam,
@@ -80,7 +80,7 @@ const Rooms = (): React.JSX.Element => {
             queryKey: [
                 "rooms",
             ],
-            queryFn: findRooms,
+            queryFn,
             initialPageParam: void 0,
             getNextPageParam: (lastPage): string | undefined => {
                 if (lastPage.length < PAGE_SIZE) return void 0;

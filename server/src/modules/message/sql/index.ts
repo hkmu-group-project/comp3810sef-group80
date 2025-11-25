@@ -31,7 +31,7 @@ const findMessages = async (
         options.first ? options.first : options.last ? options.last : 100,
     );
 
-    return await message
+    const result: WithId<Message>[] = await message
         .find({
             roomId: options.roomId,
             ...(options.after && {
@@ -50,6 +50,12 @@ const findMessages = async (
         })
         .limit(limit)
         .toArray();
+
+    if (options.last) {
+        return result.reverse();
+    }
+
+    return result;
 };
 
 type CreateRoomData = Format<Pick<Message, "roomId" | "sender" | "content">>;

@@ -348,9 +348,7 @@ router.patch(
                 description: "Successful response",
                 content: {
                     "application/json": {
-                        schema: resolver(
-                            createJsonSuccessResponseSchema(jsonResponseSchema),
-                        ),
+                        schema: resolver(jsonResponseSchema),
                     },
                 },
             },
@@ -381,6 +379,44 @@ router.patch(
                                     ),
                                     z.literal(
                                         ServiceRoomUpdateErrorMessage.INVALID,
+                                    ),
+                                ),
+                            ),
+                        ),
+                    },
+                },
+            },
+            403: {
+                description: "Forbidden access",
+                content: {
+                    "application/json": {
+                        schema: resolver(
+                            createJsonFailureResponseSchema(
+                                createJsonResponseErrorSchema(
+                                    z.literal(
+                                        ServiceRoomDeleteErrorCode.FORBIDDEN,
+                                    ),
+                                    z.literal(
+                                        ServiceRoomDeleteErrorMessage.FORBIDDEN,
+                                    ),
+                                ),
+                            ),
+                        ),
+                    },
+                },
+            },
+            404: {
+                description: "Room not found",
+                content: {
+                    "application/json": {
+                        schema: resolver(
+                            createJsonFailureResponseSchema(
+                                createJsonResponseErrorSchema(
+                                    z.literal(
+                                        ServiceRoomDeleteErrorCode.NOT_FOUND,
+                                    ),
+                                    z.literal(
+                                        ServiceRoomDeleteErrorMessage.NOT_FOUND,
                                     ),
                                 ),
                             ),
@@ -478,6 +514,44 @@ router.delete(
                                     ),
                                     z.literal(
                                         ServiceRoomDeleteErrorMessage.INVALID,
+                                    ),
+                                ),
+                            ),
+                        ),
+                    },
+                },
+            },
+            403: {
+                description: "Forbidden access",
+                content: {
+                    "application/json": {
+                        schema: resolver(
+                            createJsonFailureResponseSchema(
+                                createJsonResponseErrorSchema(
+                                    z.literal(
+                                        ServiceRoomDeleteErrorCode.FORBIDDEN,
+                                    ),
+                                    z.literal(
+                                        ServiceRoomDeleteErrorMessage.FORBIDDEN,
+                                    ),
+                                ),
+                            ),
+                        ),
+                    },
+                },
+            },
+            404: {
+                description: "Room not found",
+                content: {
+                    "application/json": {
+                        schema: resolver(
+                            createJsonFailureResponseSchema(
+                                createJsonResponseErrorSchema(
+                                    z.literal(
+                                        ServiceRoomDeleteErrorCode.NOT_FOUND,
+                                    ),
+                                    z.literal(
+                                        ServiceRoomDeleteErrorMessage.NOT_FOUND,
                                     ),
                                 ),
                             ),

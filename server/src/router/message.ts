@@ -11,6 +11,7 @@ import {
     createJsonFailureResponseSchema,
     createJsonResponseErrorSchema,
     createJsonSuccessResponseSchema,
+    jsonResponseSchema,
     objectIdSchema,
 } from "#/@types/zod";
 import { ACCESS_NAME } from "#/configs/token";
@@ -251,11 +252,7 @@ router.delete(
                 description: "Successful response",
                 content: {
                     "application/json": {
-                        schema: resolver(
-                            createJsonSuccessResponseSchema(
-                                z.array(messageSchema),
-                            ),
-                        ),
+                        schema: resolver(jsonResponseSchema),
                     },
                 },
             },

@@ -118,3 +118,12 @@
         @apply bg-background text-foreground;
     }
 }
+
+.sla-nsb {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

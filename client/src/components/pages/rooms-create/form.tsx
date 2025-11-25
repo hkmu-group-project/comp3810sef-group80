@@ -2,6 +2,7 @@
 
 import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
+import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import { toast } from "sonner";
@@ -25,10 +26,15 @@ const CreateRoomForm = (): React.JSX.Element => {
     const [name, setName] = React.useState<string>("");
     const [description, setDescription] = React.useState<string>("");
 
-    const create = async (e: React.FormEvent): Promise<void> => {
+    const mutationFn = async (e: React.FormEvent): Promise<void> => {
         e.preventDefault();
 
         setLoading(true);
+
+        if (!name) {
+            toast.error("Please enter a name");
+            return void 0;
+        }
 
         try {
             const { data, error } = await createRoom({
@@ -77,6 +83,13 @@ const CreateRoomForm = (): React.JSX.Element => {
         }
     };
 
+    const { mutate } = useMutation({
+        mutationKey: [
+            "create-room",
+        ],
+        mutationFn,
+    });
+
     return (
         <div className="min-h-screen flex flex-col bg-muted dark:bg-background">
             <div className="flex flex-1 items-center justify-center p-6">
@@ -92,7 +105,7 @@ const CreateRoomForm = (): React.JSX.Element => {
 
                     <CardContent>
                         <form
-                            onSubmit={create}
+                            onSubmit={mutate}
                             className="space-y-4"
                         >
                             <Input
@@ -105,7 +118,7 @@ const CreateRoomForm = (): React.JSX.Element => {
 
                             <Input
                                 type="text"
-                                placeholder="Description"
+                                placeholder="Description (Optional)"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                                 disabled={loading}

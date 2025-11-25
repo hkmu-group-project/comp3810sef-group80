@@ -10,8 +10,10 @@ The project structure is as follows:
 │   ├── public/: static files
 │   ├── src/: source code
 │   ├── .gitignore: git ignore
-│   ├── package.json: dependencies for the project
+│   ├── .components.json: UI component configuration
 │   ├── next.config.ts: Next.js configuration
+│   ├── package.json: dependencies for the project
+│   ├── postcss.config.mjs: PostCSS configuration
 │   └── tsconfig.json: TypeScript configuration
 │
 ├── docs/: documentations
@@ -29,12 +31,13 @@ The project structure is as follows:
 │
 ├── .gitattributes: git attributes
 ├── .gitignore: git ignore
-├── .node-version: Node.js version
 ├── .npmrc: npm configuration
 ├── biome.json: linter/formatter configuration
+├── CONTRIBUTING.md: contributing document
 ├── justfile: commands for the project
 ├── package.json: dependencies for the monorepo
 ├── pnpm-lock.yaml: lock file for pnpm
 ├── pnpm-workspace.yaml: workspace configuration for pnpm
+├── README.md: project description
 └── tsconfig.base.json: base configuration for TypeScript
 ```
