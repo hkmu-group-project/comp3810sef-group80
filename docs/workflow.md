@@ -8,9 +8,7 @@ This is the workflow document for the Instant Messaging System.
 
 - [x] User
     - [x] Register with username and password
-        - [ ] Client: Validate username (Optional, reduce stupid requests)
         - [x] Server: Check username duplication
-        - [ ] Server: Validate username (Optional, avoid stupid names)
         - [x] Server: Hash password (Argon2)
         - [x] Server: Store user into database
     - [x] Login with username and password
@@ -23,23 +21,21 @@ This is the workflow document for the Instant Messaging System.
         - [x] Client: Refresh state (Whatever the response is success or not)
     - [x] Change username
         - [x] Server: Check username duplication
-        - [ ] Server: Validate username (Optional, avoid stupid names)
-        - [ ] Server: Validate password (Optional, security issue)
         - [x] Server: Update username
     - [x] Change password
         - [x] Server: Validate password
 
-- [ ] Chat Room
-    - [ ] Room
+- [x] Chat Room
+    - [x] Room
         - [x] Create room with name
             - [x] Server: Create room in database
             - [x] Server: Return room ID
             - [x] Client: Receive room ID and redirect to room
-        - [ ] Rename room
-            - [ ] Server: Rename room in database
-        - [ ] Delete room
-            - [ ] Server: Delete room in database
-            - [ ] Client: Redirect to home page if inside the room
+        - [x] Rename room
+            - [x] Server: Rename room in database
+        - [x] Delete room
+            - [x] Server: Delete room in database
+            - [x] Client: Redirect to home page if inside the room
         - [x] Get all rooms
             - [x] Server: Get a number of rooms from database (Cursor pagination if possible)
             - [x] Client: Request more rooms when scroll to the bottom
@@ -51,7 +47,7 @@ This is the workflow document for the Instant Messaging System.
         - [ ] Leave room
             - [ ] Server: Remove user from room by room ID
             - [ ] Client: Redirect to home page if inside the room
-    - [ ] Chat
+    - [x] Chat
         - [x] Send messages
             - [x] Server: Store message into database
             - [x] Client: Update the state of messages for all users

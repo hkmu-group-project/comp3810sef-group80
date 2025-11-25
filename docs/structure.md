@@ -10,7 +10,7 @@ The project structure is as follows:
 │   ├── public/: static files
 │   ├── src/: source code
 │   ├── .gitignore: git ignore
-│   ├── .components.json: UI component configuration
+│   ├── components.json: UI component configuration
 │   ├── next.config.ts: Next.js configuration
 │   ├── package.json: dependencies for the project
 │   ├── postcss.config.mjs: PostCSS configuration
