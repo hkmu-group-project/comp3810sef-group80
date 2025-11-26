@@ -13,10 +13,10 @@ Welcome to the Instant Messaging System! This guide will help you get started, m
 4. [Group Chats](#groupChats)  
 5. [Sending Messages](#sendingMessages) 
 6. [Profile & Settings](#profile&Settings) 
-7. [Logging Out](#loggingOut)  
+7. [Logging Out](#loggingOut)
+8. [Troubleshooting](#troubleshooting) 
 
 
-<a name="gettingStarted"/>
 
 ## 1. Getting Started
 
@@ -182,3 +182,13 @@ Communicating is simple and happens in real-time.
   Click "Logout" button.
 
   You will be redirected back to the main screen after log out.
+
+
+## 8. ❓ Troubleshooting
+
+Message not sending? Check your internet connection.
+
+Can't login? Ensure you are using the correct password.
+
+Page looks broken? Try refreshing the page (Press F5 or Ctrl+R).
+
