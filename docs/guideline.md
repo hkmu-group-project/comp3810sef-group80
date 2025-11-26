@@ -18,6 +18,7 @@ Welcome to the Instant Messaging System! This guide will help you get started, m
 
 
 
+<a name="gettingStarted"/>
 ## 1. Getting Started
 
 To access the specific Instant Messaging System:
@@ -184,11 +185,13 @@ Communicating is simple and happens in real-time.
   You will be redirected back to the main screen after log out.
 
 
+<a name="troubleshooting"/>
+
 ## 8. ❓ Troubleshooting
 
-Message not sending? Check your internet connection.
+  **Message not sending?** Check your internet connection.
 
-Can't login? Ensure you are using the correct password.
+  **Can't login?** Ensure you are using the correct password.
 
-Page looks broken? Try refreshing the page (Press F5 or Ctrl+R).
+  **Page looks broken?** Try refreshing the page (Press F5 or Ctrl+R).
 
