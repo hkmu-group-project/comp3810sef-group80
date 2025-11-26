@@ -8,6 +8,10 @@ API: [ims-api.alpheus.day](https://ims-api.alpheus.day)
 
 API docs: [ims-api.alpheus.day/openapi](https://ims-api.alpheus.day/openapi)
 
+## User Guideline
+
+For the user guideline, please refer to [guideline.md](./docs/guideline.md).
+
 ## Project Structure
 
 For the project structure, please refer to [structure.md](./docs/structure.md).
