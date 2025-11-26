@@ -15,7 +15,6 @@ Welcome to the Instant Messaging System! This guide will help you get started, m
 [Profile & Settings](#profile&Settings) 
 [Logging Out](#loggingOut)  
 
-<a name="gettingStarted"/>
 ## 1. Getting Started
 
 To access the specific Instant Messaging System:
