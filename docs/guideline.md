@@ -125,7 +125,9 @@ Once you have an account:
 
 Communicating is simple and happens in real-time.
 
-  Type a Message: Enter message in the text input box at the bottom of the chat window.
+  <ins>Type a Message:<ins/>
+
+    Enter message in the text input box at the bottom of the chat window.
 
   <ins>Send:</ins>
 
