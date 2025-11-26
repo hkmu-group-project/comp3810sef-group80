@@ -7,7 +7,7 @@ This is the user guideline for the Instant Messaging System.
 Welcome to the Instant Messaging System! This guide will help you get started, manage your account, and chat with your friends and colleagues.
 
 ## Table of Contents
-1. [Getting Started](#gettingStarted)  
+1. [Getting Started](#getting-started)  
 2. [Account Registration](#accountRegistration)  
 3. [Logging In](#loggingIn)  
 4. [Group Chats](#groupChats)  
@@ -18,14 +18,14 @@ Welcome to the Instant Messaging System! This guide will help you get started, m
 
 
 
-<a name="gettingStarted"/>
+
 ## 1. Getting Started
 
 To access the specific Instant Messaging System:
 
   Open your web browser (Chrome, Edge, Firefox, or Safari).
 
-  Enter the website URL [ims.alpheus.day](https://ims.alpheus.day)
+  Enter the website URL [ims.alpheus.day](https://ims.alpheus.day).
 
   You will land on the main page.
 
@@ -189,9 +189,9 @@ Communicating is simple and happens in real-time.
 
 ## 8. ❓ Troubleshooting
 
-  **Message not sending?** Check your internet connection.
+  **Message not sending?**  Check your internet connection.
 
-  **Can't login?** Ensure you are using the correct password.
+  **Can't login?**  Ensure you are using the correct password.
 
-  **Page looks broken?** Try refreshing the page (Press F5 or Ctrl+R).
+  **Page looks broken?**  Try refreshing the page (Press F5 or Ctrl+R).
 
