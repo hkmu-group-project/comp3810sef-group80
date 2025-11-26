@@ -7,7 +7,7 @@ This is the user guideline for the Instant Messaging System.
 Welcome to the Instant Messaging System! This guide will help you get started, manage your account, and chat with your friends and colleagues.
 
 ## Table of Contents
-[1. Getting Started](#getting-started)  
+1. [Getting Started](#gettingStarted)  
 2. [Account Registration](#accountRegistration)  
 3. [Logging In](#loggingIn)  
 4. [Group Chats](#groupChats)  
@@ -17,6 +17,8 @@ Welcome to the Instant Messaging System! This guide will help you get started, m
 8. [Troubleshooting](#troubleshooting) 
 
 
+
+<a name="gettingStarted"/>
 
 ## 1. Getting Started
 
